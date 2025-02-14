@@ -5,3 +5,4 @@ pip install Django
 
 pip install python-dotenv
 
+pip install psycopg2

@@ -26,20 +26,30 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = str(os.getenv('DEBUG')) == True
+DEBUG = str(os.getenv('DEBUG')) == 'True'
 
-ALLOWED_HOSTS = []
+if DEBUG:
+    ALLOWED_HOSTS = []
+else:
+    ALLOWED_HOSTS = [
+        str(os.getenv('IP_SERVER')),
+        str(os.getenv('DOMAIN_SERVER'))
+    ]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    ## Django Apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    ## Local Apps
+    'apps.home.apps.HomeConfig',
+    'apps.career.apps.CareerConfig'
 ]
 
 MIDDLEWARE = [
@@ -76,12 +86,25 @@ WSGI_APPLICATION = 'siiut.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+engine = str(os.getenv('DB_ENGINE'))
+if engine == 'sqlite3':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.' + engine,
+            'NAME': str(os.getenv(('DB_NAME'))),
+            'HOST': str(os.getenv(('DB_HOST'))),
+            'PASSWORD': str(os.getenv(('DB_PASSWORD'))),
+            'USER': str(os.getenv(('DB_USER'))),
+            'PORT': str(os.getenv(('DB_PORT'))),
+        }
+    }
 
 
 # Password validation
@@ -119,6 +142,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+if DEBUG:
+    STATICFILES_DIRS = [BASE_DIR / 'static']
+else:
+    STATIC_ROOT = BASE_DIR / 'static'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
