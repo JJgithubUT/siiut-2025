@@ -31,11 +31,11 @@ class Career(models.Model):
                             verbose_name='Abreviatura')
     level = models.ForeignKey(Level, on_delete=models.CASCADE,
                             null=True, blank=True,
-                            verbose_name='Nivel')
+                            verbose_name='Nivel', related_name='careers')
     is_active = models.BooleanField(verbose_name='Activa?', 
                             default=True)
     principal = models.ForeignKey(User, on_delete=models.SET_NULL,
-                            null=True, blank=True,
+                            null=True, blank=True, related_name='careers',
                             verbose_name='Director de Carrera')
     year = models.CharField(max_length=4, verbose_name='Año')
 
@@ -48,9 +48,9 @@ class Career(models.Model):
 
 class Subject(models.Model):
     career = models.ForeignKey(Career, verbose_name='Carrera',
-                               on_delete=models.CASCADE)
+                               on_delete=models.CASCADE, related_name='subjects')
     quarter = models.ForeignKey(Quarter, verbose_name='Cuatrimestre',
-                                on_delete=models.CASCADE)
+                                on_delete=models.CASCADE, related_name='subjects')
     name = models.CharField(max_length=100, verbose_name='Materia')
     total_hours = models.IntegerField(verbose_name='Horas Totales')
     weekly_hours = models.IntegerField(verbose_name='Horas por Semana')

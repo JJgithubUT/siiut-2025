@@ -1,0 +1,55 @@
+python manage.py shell
+
+
+from apps.career.models import Level, Subject, Career, Quarter
+
+Subject.objects.all()
+c = Career.objects.all().first()
+c
+c.id
+.level
+c.name
+c.short_name
+c.principal
+c.subject_set.all().first()
+c.year
+
+m = Subject.objects.all().first()
+m
+m.name
+m.quarter
+m.career
+
+from django.contrib.auth.models import User
+User.objects.all()
+u = User.pbjects.get(pk=1)
+
+u.career_set.all()[0]
+u.career_set.all()[2]
+
+from apps.career.models import Quarter
+Quarter.objects.all()
+q = Quarter.objects.get(id=1)
+q
+q.quartier_name
+
+q.subject_set.all()
+
+Quarter.objects.filter(quarter=1)
+Quarter.objects.filter(quarter=100)
+Quarter.objects.get(pk=3)
+
+from apps.career.models-import Level
+Level.objects.get(id=1)
+l.short_name
+l.careers.all()
+
+
+from apps.career.models import Career
+Career.objects.filter(level=l)
+Career.objects.filter(level_id=1)
+Career.objects.filter(level__short_name='TSU')
+Career.objects.filter(name__startswith='TI')
+Career.objects.filter(name__endswith='forma')
+
+
