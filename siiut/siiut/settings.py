@@ -40,6 +40,8 @@ else:
 # Application definition
 
 INSTALLED_APPS = [
+    ##
+    'jazzmin',
     ## Django Apps
     'django.contrib.admin',
     'django.contrib.auth',

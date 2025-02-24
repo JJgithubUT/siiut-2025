@@ -13,5 +13,7 @@ class SubjectInline(admin.TabularInline):
 
 @admin.register(Career)
 class CareerModelAdmin(admin.ModelAdmin):
-    fields= ['short_name', 'level']
+    list_display = ['id', 'level', 'name', 'is_active', 'principal']
+    list_filter = ['level']
+    fields= ['short_name', 'level', 'name', 'principal']
     inlines = [SubjectInline]
