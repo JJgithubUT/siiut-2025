@@ -30,7 +30,17 @@ def quarter_details(request, q_id):
     return render(request, 'career/quarter/details.html', {'quarter': quarter})
 
 def quarter_update(request, q_id):
-    return render(request, 'career/quarter/update.html')
+    q = Quarter.objects.get(pk=q_id)
+    if request.method == 'POST':
+        if form.is_valid():
+            form = QuarterForm(request.POST, instance=q)
+            q.quarter = form.cleaned_data['quarter']
+            q.quarter_name = form.cleaned_data['quarter_name']
+            q.save()
+            return redirect('career:quarter_list')
+    else:
+        form = QuarterForm(instance=q)
+        return render(request, 'career/quarter/update.html', {'form': form})
 
 def quarter_delete(request, q_id):
     pass
