@@ -19,7 +19,7 @@
             <td>{{ quarter.id }}</td>
             <td>{{ quarter.quarter }}</td>
             <td>{{ quarter.quarter_name }}</td>
-            <td>Details</td>
+            <td><a href="{% url 'career:quarter_details' quarter.id %}">Detalles</a></td>
         </tr>
         {% endfor %}
     </tbody>
