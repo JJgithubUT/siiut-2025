@@ -18,10 +18,11 @@ class Level(models.Model):
     short_name = models.CharField(max_length=10, verbose_name='Abreviatura')
 
     def __str__(self):
-        return self.short_name
+        return self.name
     
     class Meta:
-        verbose_name = 'Nivele'
+        verbose_name = 'Nivel'
+        verbose_name_plural = 'Niveles'
 
 
 class Career(models.Model):

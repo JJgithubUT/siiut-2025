@@ -8,5 +8,5 @@ urlpatterns = [
     path('quarter/create/', views.quarter_create, name='quarter_create'),
     path('quarter/<int:q_id>/details/', views.quarter_details, name='quarter_details'),
     path('quarter/<int:q_id>/update/', views.quarter_update, name='quarter_update'),
-    path('quarter/<int:q_id>/delete/', views.quarter_delete, name='quarter_delete'),
+    path('quarter/<int:q_id>/delete/', views.quarter_delete, name='quarter_delete')
 ]

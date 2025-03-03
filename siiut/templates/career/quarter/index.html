@@ -3,28 +3,27 @@
 {% block title %}Lista de Cuatrimestres{% endblock title %}
 
 {% block content %}
-<a href="{% url 'career:quarter_create' %}">Nuevo Cuatrimestre</a>
+<a href="{% url 'career:quarter_create' %}">Nuevo Cuatri</a>
 <table>
     <thead>
         <tr>
             <th>id</th>
             <th>Quatrimestre No</th>
+            <th>Quatrimestre</th>
             <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
         {% for quarter in quarters %}
         <tr>
+            <td>{{ quarter.id }}</td>
             <td>{{ quarter.quarter }}</td>
-            <td>{{ quarter.quarter_no }}</td>
+            <td>{{ quarter.quarter_name }}</td>
             <td>Details</td>
-            <td>
-                <a href="{% url 'career:quarter_update' quarter.id %}">Editar</a>
-                <a href="{% url 'career:quarter_delete' quarter.id %}">Eliminar</a>
-            </td>
         </tr>
         {% endfor %}
     </tbody>
-</table>
+</table> 
 {% endblock content %}
+    
     

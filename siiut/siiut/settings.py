@@ -1,24 +1,24 @@
 """
+Sistema Integral de Información para las 
+Universidades Tecnológicas
+SIIUT
 
-Sistema Integral de Información para las Universidades Tecnológicas
-Sistema: SIIUT
+Autor: Francisco López Briones
+@franlop24
 
-Autor: Juan Javier Castillo Bretón
-
-Febrero 2025
-
+Febrero de 2025
 """
 
-import os
 from pathlib import Path
 from dotenv import load_dotenv
+import os
 
 load_dotenv(override=True)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-    
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
@@ -36,20 +36,18 @@ else:
         str(os.getenv('DOMAIN_SERVER'))
     ]
 
-
 # Application definition
 
 INSTALLED_APPS = [
-    ##
+    ### Django Apps
     'jazzmin',
-    ## Django Apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    ## Local Apps
+    ### Local Apps
     'apps.home.apps.HomeConfig',
     'apps.career.apps.CareerConfig'
 ]
@@ -89,6 +87,7 @@ WSGI_APPLICATION = 'siiut.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 engine = str(os.getenv('DB_ENGINE'))
+
 if engine == 'sqlite3':
     DATABASES = {
         'default': {
@@ -100,14 +99,13 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.' + engine,
-            'NAME': str(os.getenv(('DB_NAME'))),
-            'HOST': str(os.getenv(('DB_HOST'))),
-            'PASSWORD': str(os.getenv(('DB_PASSWORD'))),
-            'USER': str(os.getenv(('DB_USER'))),
-            'PORT': str(os.getenv(('DB_PORT'))),
+            'NAME': str(os.getenv('DB_NAME')),
+            'HOST': str(os.getenv('DB_HOST')),
+            'PASSWORD': str(os.getenv('DB_PASSWORD')),
+            'USER': str(os.getenv('DB_USER')),
+            'PORT': str(os.getenv('DB_PORT'))
         }
     }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -144,7 +142,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
-
 if DEBUG:
     STATICFILES_DIRS = [BASE_DIR / 'static']
 else:

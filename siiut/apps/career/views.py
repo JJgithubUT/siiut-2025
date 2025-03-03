@@ -1,7 +1,8 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import render, redirect
+
 from .models import Quarter
 from .forms import QuarterForm
-# CRUD  Views para Quarter
+## CRUD Views for Quarter
 def quarter_list(request):
     quarters = Quarter.objects.all()
     context = {
@@ -21,26 +22,33 @@ def quarter_create(request):
             return redirect('career:quarter_list')
     else:
         form = QuarterForm()
-        return render(request, 'career/quarter/create.html', {'form': form})
-
-    return render(request, 'career/quarter/create.html',{'form': form})
+        return render(request, 
+                'career/quarter/create.html',
+                {'form': form})
 
 def quarter_details(request, q_id):
     quarter = Quarter.objects.get(pk=q_id)
-    return render(request, 'career/quarter/details.html', {'quarter': quarter})
+    return render(request, 
+            'career/quarter/details.html',
+            {'quarter': quarter})
 
 def quarter_update(request, q_id):
     q = Quarter.objects.get(pk=q_id)
     if request.method == 'POST':
+        form = QuarterForm(request.POST)
         if form.is_valid():
-            form = QuarterForm(request.POST, instance=q)
             q.quarter = form.cleaned_data['quarter']
             q.quarter_name = form.cleaned_data['quarter_name']
             q.save()
             return redirect('career:quarter_list')
     else:
         form = QuarterForm(instance=q)
-        return render(request, 'career/quarter/update.html', {'form': form})
+        return render(request, 
+                    'career/quarter/update.html',
+                    {'form': form})
 
 def quarter_delete(request, q_id):
-    pass
+    if request.method == 'POST':
+        q = Quarter.objects.get(pk=q_id)
+        q.delete()
+        return redirect('career:quarter_list')
