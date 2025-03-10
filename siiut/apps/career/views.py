@@ -1,10 +1,10 @@
-from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 
 from .models import Quarter, Level
 from .forms import QuarterForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+
 ## CRUD Views for Quarter
 def quarter_list(request):
     quarters = Quarter.objects.all()
@@ -58,7 +58,8 @@ def quarter_delete(request, q_id):
         q.delete()
         return redirect('career:quarter_list')
     
-### Vistas basadas en clases para Model
+
+### Vistas Basadas en Clases para Level Model
 class LevelListView(ListView):
     model = Level
     template_name = 'career/level/index.html'
