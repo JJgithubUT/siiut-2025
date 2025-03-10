@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Detalles de Nivel{% endblock title %}
+
+
+{% block content %}
+<h1>Detalles de Nivel</h1>
+<p>Nivel: {{ level.name }}</p>
+<p>Abreviatura{{ level.short_name }}</p>
+<a href="{% url 'career:level_update' level.id %}">Actualizar</a>
+<form action="{% url 'career:level_delete' level.id %}">
+    {% csrf_token %}
+    <input type="submit" value="Eliminar">
+</form>
+{% endblock content %}

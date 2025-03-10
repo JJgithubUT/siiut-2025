@@ -71,15 +71,16 @@ class LevelDetailView(DetailView):
 
 class LevelCreateView(CreateView):
     model = Level
+    fields = ['name', 'short_name']
     template_name = 'career/level/create.html'
     success_url = reverse_lazy('career:level_list')
 
 class LevelUpdateView(UpdateView):
     model = Level
+    fields = ['name', 'short_name']
     template_name = 'career/level/update.html'
     success_url = reverse_lazy('career:level_list')
 
 class LevelDeleteView(DeleteView):
     model = Level
-    template_name = 'career/level/delete.html'
     success_url = reverse_lazy('career:level_list')
