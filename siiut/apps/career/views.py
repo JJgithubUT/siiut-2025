@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, HttpResponse
 
-from .models import Quarter, Level
+from .models import Quarter, Level, Career
 from .forms import QuarterForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
@@ -85,3 +85,31 @@ class LevelUpdateView(UpdateView):
 class LevelDeleteView(DeleteView):
     model = Level
     success_url = reverse_lazy('career:level_list')
+
+### Vistas Basadas en Clases para Career Model
+# Vistas Basadas en Clases para Career Model
+class CareerListView(ListView):
+    model = Career
+    template_name = 'career/career/index.html'
+    context_object_name = 'careers'
+
+class CareerDetailView(DetailView):
+    model = Career
+    template_name = 'career/career/details.html'
+    context_object_name = 'career'
+
+class CareerCreateView(CreateView):
+    model = Career
+    fields = ['name', 'short_name', 'level', 'is_active', 'principal', 'year']
+    template_name = 'career/career/create.html'
+    success_url = reverse_lazy('career:career_list')
+
+class CareerUpdateView(UpdateView):
+    model = Career
+    fields = ['name', 'short_name', 'level', 'is_active', 'principal', 'year']
+    template_name = 'career/career/update.html'
+    success_url = reverse_lazy('career:career_list')
+
+class CareerDeleteView(DeleteView):
+    model = Career
+    success_url = reverse_lazy('career:career_list')

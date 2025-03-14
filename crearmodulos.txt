@@ -1,0 +1,5 @@
+en views.py  clases para create, update, delete, list
+en urls.py   rutas una por cada clase 
+en templates crear subcarpeta career/career/ index.HTML
+en menú.html agregar link a list
+// posiblemente registrar rutas

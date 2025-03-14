@@ -1,0 +1,15 @@
+<a class="block w-[150px] rounded-xl border bg-sky-600 p-2 text-center font-bold text-white hover:bg-sky-400" href="">Button</a>
+
+<input
+class="rounded-xl border-sky-100 p-2"
+type="text" name="" placeholder="Input" />
+
+
+<table class="w-full border">
+  <tr class="w-full flex justify-between">
+    <td>Field</td>
+    <td><input
+    class="border border-sky-100 p-2 rounded-xl"
+    type="text" placeholder="field text"></td>
+  </tr>
+</table>
