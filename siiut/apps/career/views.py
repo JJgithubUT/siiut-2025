@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponse
 
-from .models import Quarter, Level, Career
-from .forms import QuarterForm
+from .models import Quarter, Level, Career, Subject
+from .forms import CareerForm, QuarterForm, LevelForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
@@ -72,13 +72,13 @@ class LevelDetailView(DetailView):
 
 class LevelCreateView(CreateView):
     model = Level
-    fields = ['name', 'short_name']
+    form_class = LevelForm
     template_name = 'career/level/create.html'
     success_url = reverse_lazy('career:level_list')
 
 class LevelUpdateView(UpdateView):
     model = Level
-    fields = ['name', 'short_name']
+    form_class = LevelForm
     template_name = 'career/level/update.html'
     success_url = reverse_lazy('career:level_list')
 
@@ -86,7 +86,6 @@ class LevelDeleteView(DeleteView):
     model = Level
     success_url = reverse_lazy('career:level_list')
 
-### Vistas Basadas en Clases para Career Model
 # Vistas Basadas en Clases para Career Model
 class CareerListView(ListView):
     model = Career
@@ -100,16 +99,22 @@ class CareerDetailView(DetailView):
 
 class CareerCreateView(CreateView):
     model = Career
-    fields = ['name', 'short_name', 'level', 'is_active', 'principal', 'year']
+    form_class = CareerForm
     template_name = 'career/career/create.html'
     success_url = reverse_lazy('career:career_list')
 
 class CareerUpdateView(UpdateView):
     model = Career
-    fields = ['name', 'short_name', 'level', 'is_active', 'principal', 'year']
+    form_class = CareerForm
     template_name = 'career/career/update.html'
     success_url = reverse_lazy('career:career_list')
 
 class CareerDeleteView(DeleteView):
     model = Career
     success_url = reverse_lazy('career:career_list')
+
+# Views para Subject Model
+class SubjectListView(ListView):
+    model = Subject
+    template_name = 'career/subject/index.html'
+    context_object_name = 'subjects'

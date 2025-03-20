@@ -11,6 +11,9 @@
 <p>Activa: {{ career.is_active }}</p>
 <p>Director de Carrera: {{ career.principal }}</p>
 <hr>
+<h2>Plan de Estudios</h2>
+<a href="{% url 'career:subject_list' %}"></a>
+
 <a href="{% url 'career:career_update' career.id %}">Actualizar</a>
 <form action="{% url 'career:career_delete' career.id %}" method="post">
     {% csrf_token %}

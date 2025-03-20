@@ -4,13 +4,14 @@
         <ul class="flex space-x-4">
             {% if user.is_authenticated %}
             <li>
-                <form action="{% url 'logout' %}" method="post">
+                <form action="{% url 'home:logout' %}" method="post">
+                    {% csrf_token %}
                     <input type="submit" value="Salir">
                 </form>
             </li>
             {% else %}
             <li>
-                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'home:login' %}">Login</a>
             </li>
             {% endif %}
         </ul>

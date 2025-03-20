@@ -1,11 +1,36 @@
 from django import forms
-from .models import Quarter
+
+from .models import Career, Level, Quarter
+
+# input_tail = 'border border-gray-300 p-2 rounded-x focus:shadow-xl mt-4'
+input_tail = 'border border-gray-300 p-2 rounded-md shadow-sm focus:shadow-lg focus:ring focus:ring-blue-300 mt-4 mb-4 w-full'
 
 class QuarterForm(forms.ModelForm):
     class Meta:
         model = Quarter
         fields = ['quarter', 'quarter_name']
         widgets = {
-            'quarter': forms.TextInput(attrs={"type": "number", "class": 'border border-gray-300 p-2 rounded-xl'}),
-            'quarter_name': forms.TextInput(attrs={"class": 'border border-gray-300 p-2 rounded-xl'})
+            'quarter': forms.TextInput(attrs={"type": "number", "class": input_tail}),
+            'quarter_name': forms.TextInput(attrs={"class": input_tail}),
+        }
+
+class LevelForm(forms.ModelForm):
+    class Meta:
+        model = Level
+        fields = ['name', 'short_name']
+        widgets = {
+            'name': forms.TextInput(attrs={"class": input_tail}),
+            'short_name': forms.TextInput(attrs={"class": input_tail}),
+        }
+
+class CareerForm(forms.ModelForm):
+    class Meta:
+        model = Career
+        fields = ['level', 'name', 'short_name', 'principal', 'year']
+        widgets = {
+            'level': forms.Select(attrs={"class": input_tail}),
+            'name': forms.TextInput(attrs={"class": input_tail}),
+            'short_name': forms.TextInput(attrs={"class": input_tail}),
+            'principal': forms.Select(attrs={"class": input_tail}),
+            'year': forms.TextInput(attrs={"class": input_tail}),
         }

@@ -13,7 +13,7 @@
                 href="{% url 'home:contact' %}">Contacto</a>
         </li>
 
-        {% if user.id_authenticated %}
+        {% if user.is_authenticated %}
         <li>
             <a class="block w-[200px] bg-slate-200 hover:bg-slate-400 m-2 rounded-xl p-2"
                 href="{% url 'career:quarter_list' %}">Cuatrimestres</a>
