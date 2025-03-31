@@ -5,9 +5,6 @@
 {% block content %}
 <h1>{{ career }}</h1>
 <h2 class="py-2 text-center text-xl font-extrabold">Plan de Estudios</h2>
-<a
-  class="inline-block bg-green-600 p-4 text-white hover:bg-green-700 rounded-xl"
-  href="{% url 'career:subject_create' career.id %}">Nueva Materia</a>
 <table class="w-full table-auto text-left">
   <thead class="bg-green-400">
     <tr>
@@ -27,26 +24,24 @@
       <td>{{ subject.quarter }}</td>
       <td>{{ subject.total_hours }}</td>
       <td>{{ subject.weekly_hours }}</td>
+      <td><a href="{% url 'career:subject_update' career.id subject.id %}">
+        <li class="ri-edit-2-line ri-lg"></li>
+      </a>
+    </td>
     </tr>
     {% endfor %}
   </tbody>
 </table>    
-<div class="container mt-4 mx-auto flex justify-between">
-  <div>
+<div>
   {% if page_obj.has_previous %}
-      <a href="?page=1" class="text-sky-500 border p-3 rounded-md">&laquo;</a>
-      <a href="?page={{ page_obj.previous_page_number }}" class="text-sky-500 border p-3 rounded-md">Atras</a>
+      <a href="?page=1">&laquo;</a>
+      <a href="?page={{ page_obj.previous_page_number }}">Atras</a>
   {% endif %}
-</div>
-<div>
   <span><b><u>Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</u></b></span>
-</div>
-<div>
   {% if page_obj.has_next %}
-      <a href="?page={{ page_obj.next_page_number }}" class="text-sky-500 border p-3 rounded-md">Adelante</a>
-      <a href="?page={{ page_obj.paginator.num_pages }}" class="text-sky-500 border p-3 rounded-md">&raquo;</a>
+      <a href="?page={{ page_obj.next_page_number }}">Adelante</a>
+      <a href="?page={{ page_obj.paginator.num_pages }}">&raquo;</a>
   {% endif %}
-</div>
 </div>
 {% endblock content %}
     
