@@ -1,33 +1,36 @@
 <nav>
     <ul>
         <li>
-            <a class="block w-[200px] bg-slate-200 hover:bg-slate-400 m-2 rounded-xl p-2"
-                href="{% url 'home:home' %}">Home</a>
+            <a 
+            class="block w-[200px] bg-slate-200 hover:bg-slate-400 m-2 rounded-xl p-2"
+            href="{% url 'home:home' %}">Home</a>
         </li>
         <li>
-            <a class="block w-[200px] bg-slate-200 hover:bg-slate-400 m-2 rounded-xl p-2"
-                href="{% url 'home:about' %}">Acerca de</a>
+            <a 
+            class="block w-[200px] bg-slate-200 hover:bg-slate-400 m-2 rounded-xl p-2"
+            href="{% url 'home:about' %}">Acerca de</a>
         </li>
         <li>
-            <a class="block w-[200px] bg-slate-200 hover:bg-slate-400 m-2 rounded-xl p-2"
-                href="{% url 'home:contact' %}">Contacto</a>
+            <a 
+            class="block w-[200px] bg-slate-200 hover:bg-slate-400 m-2 rounded-xl p-2"
+            href="{% url 'home:contact' %}">Contacto</a>
         </li>
-
         {% if user.is_authenticated %}
         <li>
-            <a class="block w-[200px] bg-slate-200 hover:bg-slate-400 m-2 rounded-xl p-2"
-                href="{% url 'career:quarter_list' %}">Cuatrimestres</a>
+            <a 
+            class="block w-[200px] bg-slate-200 hover:bg-slate-400 m-2 rounded-xl p-2"
+            href="{% url 'career:quarter_list' %}">Cuatrimestres</a>
         </li>
         <li>
-            <a class="block w-[200px] bg-slate-200 hover:bg-slate-400 m-2 rounded-xl p-2"
-                href="{% url 'career:level_list' %}">Niveles</a>
+            <a 
+            class="block w-[200px] bg-slate-200 hover:bg-slate-400 m-2 rounded-xl p-2"
+            href="{% url 'career:level_list' %}">Niveles</a>
         </li>
         <li>
-            <a class="block w-[200px] bg-slate-200 hover:bg-slate-400 m-2 rounded-xl p-2"
-                href="{% url 'career:career_list' %}">Carreras</a>
+            <a 
+            class="block w-[200px] bg-slate-200 hover:bg-slate-400 m-2 rounded-xl p-2"
+            href="{% url 'career:career_list' %}">Carreras</a>
         </li>
         {% endif %}
-
-
     </ul>
 </nav>

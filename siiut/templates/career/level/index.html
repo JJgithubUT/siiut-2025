@@ -19,7 +19,7 @@
     <tbody>
         {% for level in levels %}
         <tr>
-            <td><a href="{% url 'career:level_detail' level.id %}">{{ level.id }}</a></td>
+            <td><a href="{% url 'career:level_details' level.id %}">{{ level.id }}</a></td>
             <td>{{ level.name }}</td>
             <td>{{ level.short_name }}</td>
             <td>Acciones</td>
@@ -28,3 +28,4 @@
     </tbody>
 </table>
 {% endblock content %}
+    

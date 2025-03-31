@@ -1,17 +1,12 @@
 {% extends 'base.html' %}
-
-{% block title %}Login{% endblock title %}
+{% block title %}Login{% endblock %}
 
 {% block content %}
-<div class="flex justify-center items-center min-h-screen bg-gray-100">
-    <div class="bg-white p-6 rounded-lg shadow-lg">
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input
-            class="w-full bg-blue-500 p-2 text-white hover:bg-blue-600 rounded-xl"
-            type="submit" value="Entrar">
-        </form>
-    </div>
-</div>
-{% endblock content %}
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input 
+    class="w-full bg-slate-400 p-2 text-white hover:bg-slate-500 rounded-xl"
+    type="submit" value="Entrar">
+</form>
+{% endblock %}

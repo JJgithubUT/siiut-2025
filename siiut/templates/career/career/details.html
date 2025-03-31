@@ -4,19 +4,25 @@
 
 {% block content %}
 <h1 class="text-2xl font-extrabold">Detalles de Carrera</h1>
-<p>Nombre: {{ career.name }}</p>
-<p>Abreviatura: {{ career.short_name }}</p>
-<p>Nivel: {{ career.level }}</p>
-<p>Año: {{ career.year }}</p>
-<p>Activa: {{ career.is_active }}</p>
-<p>Director de Carrera: {{ career.principal }}</p>
+<p>Nivel: <b>{{ career.level }}</b></p>
+<p>Nombre: <b>{{ career.name }}</b></p>
+<p>Abreviatura: <b>{{ career.short_name }}</b></p>
+<p>Director de Carrera: <b>{{ career.principal }}</b></p>
 <hr>
-<h2>Plan de Estudios</h2>
-<a href="{% url 'career:subject_list' %}"></a>
 
-<a href="{% url 'career:career_update' career.id %}">Actualizar</a>
-<form action="{% url 'career:career_delete' career.id %}" method="post">
-    {% csrf_token %}
-    <input type="submit" value="Eliminar">
-</form>
+<h2 class="font-extrabold"><a 
+    class="text-sky-600"
+    href="{% url 'career:subject_list' career.id %}">Plan de Estudios</a></h2>
+
+    <div class="container mx-auto flex">
+        <a 
+            class="inline-block p-2 mx-4 bg-green-600 rounded-xl shadow-xl text-white"
+            href="{% url 'career:career_update' career.id %}">Actualizar</a>
+        <form action="{% url 'career:career_delete' career.id %}" method="post">
+            {% csrf_token %}
+            <input 
+                class="inline-block p-2 bg-red-600 rounded-xl shadow-xl text-white"
+                type="submit" value="Eliminar">
+        </form>
+    </div>
 {% endblock content %}

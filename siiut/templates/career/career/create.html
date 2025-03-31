@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
-{% block title %}Nueva Carrera{% endblock title %}
+{% block title %}Nuevo Nivel{% endblock title %}
 
 {% block content %}
-<h1>Nueva Carrera</h1>    
+<h1 class="text-2xl font-extrabold">Nueva Carrera</h1>    
 <form method="post">
     {% csrf_token %}
     {{ form }}
@@ -12,3 +12,5 @@
         type="submit" value="Guardar">
 </form>
 {% endblock content %}
+    
+    

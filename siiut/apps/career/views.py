@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponse
 
 from .models import Quarter, Level, Career, Subject
-from .forms import CareerForm, QuarterForm, LevelForm
+from .forms import SubjectForm, CareerForm, QuarterForm, LevelForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
@@ -116,5 +116,46 @@ class CareerDeleteView(DeleteView):
 # Views para Subject Model
 class SubjectListView(ListView):
     model = Subject
+    paginate_by = 5
     template_name = 'career/subject/index.html'
     context_object_name = 'subjects'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        id_career = self.kwargs.get('career_id')
+        queryset = queryset \
+            .filter(career__id=id_career) \
+            .order_by('quarter')
+        return queryset
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        career = Career.objects.get(pk=self.kwargs.get('career_id'))
+        complex['career'] = career
+        return context
+
+class SubjectCreateView(CreateView):
+    model = Subject
+    form_class = SubjectForm
+    template_name = 'career/subject/create.html'
+    
+    def form_valid(self, form):
+        id_career = self.kwargs.get('id_career')
+        career = Career.objects.get(id=id_career)
+        form.instance.career = career
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        id_career = self.kwargs.get('id_career')
+        return reverse_lazy('career:subject_list', kwargs={'id_career': id_career})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        id_career = self.kwargs.get('id_career')
+        context['career'] = Career.objects.get(pk=id_career)
+        return context
+    
+class SubjectUpdateView(UpdateView):
+    model = Subject
+    form_class = SubjectForm
+    template_name = 'career/subject/update.html'

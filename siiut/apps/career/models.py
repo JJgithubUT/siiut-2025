@@ -41,7 +41,7 @@ class Career(models.Model):
     year = models.CharField(max_length=4, verbose_name='Año')
 
     def __str__(self):
-        return f"{ self.level } - { self.name }"
+        return f"{ self.level.short_name } - { self.name }"
     
     class Meta:
         verbose_name = 'Carrera'

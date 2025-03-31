@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
-{% block title %}Actualizar Nivel{% endblock title %}
+{% block title %}Nuevo Nivel{% endblock title %}
 
 {% block content %}
-<h1>Actualizar Nivel</h1>    
+<h1>Nuevo Nivel</h1>    
 <form method="post">
     {% csrf_token %}
     {{ form }}
@@ -12,3 +12,5 @@
         type="submit" value="Actualizar">
 </form>
 {% endblock content %}
+    
+    
